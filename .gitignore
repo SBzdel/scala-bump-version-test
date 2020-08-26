@@ -1,0 +1,56 @@
+# IntelliJ IDEA
+.idea
+out/
+
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Log file
+*.log
+
+# Compiled class file
+*.class
+
+
+# lab configuration file
+.lab.yml
+.lab.cache
+
+# Python virtual env
+.penv/
+
+**/*.dist-info
+*.iml
+**/__pycache__
+**/.cache
+venv
+target
+**/target
+**/dependency-reduced-pom.xml
+**/glue-assembly.jar
+**/node_modules
+**/dist
+**/*.versionsBackup
+**/output/
+**/spark-warehouse/
+.m2
+
+# VS Code
+.metals
+.classpath
+.project
+.factorypath
+.settings
+.bloop
+metals.sbt
+
+project/project/*
+
+metastore_db
+local-storage.json
