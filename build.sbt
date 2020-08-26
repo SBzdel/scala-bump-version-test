@@ -1,5 +1,12 @@
 name := "scala-bump-version-test"
 
-version := "0.1.0"
+lazy val globalScalaVersion = "2.11.12"
 
-scalaVersion := "2.12.7"
+lazy val commonSettings = Seq(
+  scalaVersion := globalScalaVersion
+)
+
+lazy val global = project
+  .in(file("."))
+  .settings(name := "scala-bump-version-test")
+  .settings(commonSettings)
