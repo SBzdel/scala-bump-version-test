@@ -26,10 +26,9 @@ lazy val global = project
     ),
     commands += Command.command("patch") { state =>
       println("bumping patch!")
-
-      Parser.parse("", ReleaseKeys.releaseCommand.parser(state)) match {
+      Parser.parse(" with-defaults", ReleaseKeys.releaseCommand.parser(state)) match {
         case Right(cmd) =>
-          releaseVersionBump := sbtrelease.Version.Bump.Minor
+          releaseVersionBump in Scope.Global := sbtrelease.Version.Bump.Minor
           cmd()
         case Left(msg) => throw sys.error(s"Error triggering release command:\n$msg")
       }
