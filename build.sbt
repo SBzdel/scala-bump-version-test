@@ -11,7 +11,7 @@ lazy val commonSettings = Seq(
 )
 
 val bumpVersionPatch = taskKey[Unit]("bump patch version")
-releaseVersionBump in Scope.Global := sbtrelease.Version.Bump.Minor
+releaseVersionBump := sbtrelease.Version.Bump.Minor
 
 lazy val global = project
   .in(file("."))
@@ -29,7 +29,7 @@ lazy val global = project
       println("bumping patch!")
       Parser.parse(" with-defaults", ReleaseKeys.releaseCommand.parser(state)) match {
         case Right(cmd) =>
-          releaseVersionBump in Scope.Global := sbtrelease.Version.Bump.Minor
+          releaseVersionBump := sbtrelease.Version.Bump.Minor
           cmd()
         case Left(msg) => throw sys.error(s"Error triggering release command:\n$msg")
       }
