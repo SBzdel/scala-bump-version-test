@@ -5,7 +5,7 @@ import sbtrelease.Version.Bump._
 name := "scala-bump-version-test"
 
 lazy val globalScalaVersion = "2.11.12"
-
+releaseIgnoreUntrackedFiles := true
 
 lazy val global = project
   .in(file("."))
