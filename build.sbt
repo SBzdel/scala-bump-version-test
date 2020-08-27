@@ -27,6 +27,7 @@ commands += Command.command("patch") { state =>
   }
   state*/
   releaseVersionBump := sbtrelease.Version.Bump.Minor
-  val newState = Command.process("release with-defaults", state)
-  newState
+  val newState = Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Minor", state)
+  val newState2 = Command.process("release with-defaults;", newState)
+  newState2
 }
