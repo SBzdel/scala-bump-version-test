@@ -16,21 +16,24 @@ lazy val global = project
 
 commands += Command.command("bumpPatch") { state =>
   println("Bumping patch version!")
-  val newState = Command.process("\"set releaseVersionBump := sbtrelease.Version.Bump.Bugfix\" \"release with-defaults\";", state)
-  //val newState2 = Command.process("release with-defaults", newState)
+  val stateWithPartSet = 
+    Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Bugfix", state)
+  val newState = Command.process("release with-defaults", stateWithPartSet)
   newState
 }
 
 commands += Command.command("bumpMinor") { state =>
   println("Bumping minor version!")
-  val newState = Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Minor", state)
-  val newState2 = Command.process("release with-defaults", newState)
-  newState2
+  val stateWithPartSet = 
+    Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Minor", state)
+  val newState = Command.process("release with-defaults", stateWithPartSet)
+  newState
 }
 
 commands += Command.command("bumpMajor") { state =>
   println("Bumping major version!")
-  val newState = Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Major", state)
-  val newState2 = Command.process("release with-defaults", newState)
-  newState2
+  val stateWithPartSet = 
+    Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Major", state)
+  val newState = Command.process("release with-defaults", stateWithPartSet)
+  newState
 }
