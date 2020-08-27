@@ -8,11 +8,18 @@ lazy val commonSettings = Seq(
   scalaVersion := globalScalaVersion
 )
 
+val bumpVersionPatch = taskKey[Unit]("bump patch version")
+
 lazy val global = project
   .in(file("."))
-  .settings(releaseProcess := Seq[ReleaseStep](
-    inquireVersions,
-    setNextVersion,
-    commitReleaseVersion
-  ))
+  .settings(
+    releaseProcess := Seq[ReleaseStep](
+      inquireVersions,
+      setNextVersion,
+      commitReleaseVersion
+    ),
+    bumpVersionPatch := {
+      println("bumping patch...")
+      releaseVersionBump := sbtrelease.Version.Bump.Bugfix
+    })
   .settings(commonSettings)
