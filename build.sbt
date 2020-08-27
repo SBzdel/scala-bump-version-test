@@ -1,4 +1,5 @@
 import ReleaseTransformations._
+import sbtrelease.Version.Bump._
 
 name := "scala-bump-version-test"
 
@@ -7,6 +8,7 @@ lazy val globalScalaVersion = "2.11.12"
 lazy val commonSettings = Seq(
   scalaVersion := globalScalaVersion
 )
+releaseVersionBump := Major
 
 val bumpVersionPatch = taskKey[Unit]("bump patch version")
 
@@ -15,7 +17,7 @@ lazy val global = project
   .settings(
     bumpVersionPatch := {
       println("bumping patch...")
-      releaseVersionBump := sbtrelease.Version.Bump.Minor
+      releaseVersionBump := Minor
     },
     releaseProcess := Seq[ReleaseStep](
       inquireVersions,
