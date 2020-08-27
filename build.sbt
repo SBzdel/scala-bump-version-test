@@ -16,7 +16,7 @@ lazy val global = project
   .settings(
     bumpVersionPatch := {
       println("bumping patch...")
-      releaseVersionBump in Global := Minor
+      releaseVersionBump in Global in global := Minor
     },
     releaseProcess := Seq[ReleaseStep](
       inquireVersions,
