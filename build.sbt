@@ -11,7 +11,6 @@ lazy val commonSettings = Seq(
 lazy val global = project
   .in(file("."))
   .settings(releaseProcess := Seq[ReleaseStep](
-    inquireVersions,
     setNextVersion,
     commitReleaseVersion
   ))
