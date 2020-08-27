@@ -11,6 +11,7 @@ lazy val commonSettings = Seq(
 )
 
 val bumpVersionPatch = taskKey[Unit]("bump patch version")
+releaseVersionBump in Scope.Global := sbtrelease.Version.Bump.Minor
 
 lazy val global = project
   .in(file("."))
