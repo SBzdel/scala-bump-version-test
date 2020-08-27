@@ -13,13 +13,14 @@ val bumpVersionPatch = taskKey[Unit]("bump patch version")
 lazy val global = project
   .in(file("."))
   .settings(
+    bumpVersionPatch := {
+      println("bumping patch...")
+      releaseVersionBump := sbtrelease.Version.Bump.Minor
+    },
     releaseProcess := Seq[ReleaseStep](
       inquireVersions,
       setNextVersion,
       commitReleaseVersion
-    ),
-    bumpVersionPatch := {
-      println("bumping patch...")
-      releaseVersionBump := sbtrelease.Version.Bump.Minor
-    })
+    )
+  )
   .settings(commonSettings)
