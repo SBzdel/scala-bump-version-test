@@ -1,4 +1,5 @@
 import ReleaseTransformations._
+import sbt.internal.util.complete.Parser
 import sbtrelease.Version.Bump._
 
 name := "scala-bump-version-test"
@@ -26,6 +27,10 @@ lazy val global = project
     commands += Command.command("patch") { state =>
       println("bumping patch!")
       releaseVersionBump := Minor
+      Parser.parse(" with-defaults", ReleaseKeys.releaseCommand.parser(state)) match {
+        case Right(cmd) => cmd()
+        case Left(msg) => throw sys.error(s"Error triggering release command:\n$msg")
+      }
       state
     }
   )
