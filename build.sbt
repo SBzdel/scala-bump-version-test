@@ -16,12 +16,17 @@ lazy val global = project
   .settings(
     bumpVersionPatch := {
       println("bumping patch...")
-      releaseVersionBump in Global in global := Minor
+      releaseVersionBump := Minor
     },
     releaseProcess := Seq[ReleaseStep](
       inquireVersions,
       setNextVersion,
       commitReleaseVersion
-    )
+    ),
+    commands += Command.command("patch") { state =>
+      println("bumping patch!")
+      releaseVersionBump := Minor
+      state
+    }
   )
   .settings(commonSettings)
