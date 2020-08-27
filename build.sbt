@@ -16,7 +16,7 @@ lazy val global = project
 
 commands += Command.command("bumpPatch") { state =>
   println("Bumping patch version!")
-  val newState = Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Bugfix 'release with-defaults'", state)
+  val newState = Command.process("'set releaseVersionBump := sbtrelease.Version.Bump.Bugfix' release with-defaults", state)
   //val newState2 = Command.process("release with-defaults", newState)
   newState
 }
