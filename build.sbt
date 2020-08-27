@@ -20,6 +20,6 @@ lazy val global = project
     ),
     bumpVersionPatch := {
       println("bumping patch...")
-      releaseVersionBump := sbtrelease.Version.Bump.Bugfix
+      releaseVersionBump := sbtrelease.Version.Bump.Minor
     })
   .settings(commonSettings)
