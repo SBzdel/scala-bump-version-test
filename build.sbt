@@ -9,7 +9,6 @@ lazy val global = project
 
 val relProcessForBump = Seq[ReleaseStep](
   inquireVersions,
-  setReleaseVersion,
   setNextVersion,
   commitReleaseVersion,
 )
