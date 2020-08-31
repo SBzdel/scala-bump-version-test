@@ -6,6 +6,12 @@ lazy val globalScalaVersion = "2.11.12"
 
 lazy val global = project
   .in(file("."))
+  .settings(
+    releaseProcess := Seq[ReleaseStep](
+      inquireVersions,
+      setNextVersion,
+      commitReleaseVersion
+  ))
 
 commands += Command.command("bumpPatch") { state =>
   println("Bumping patch version!")
