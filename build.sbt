@@ -26,16 +26,22 @@ commands += Command.command("bumpPatch") { state =>
 
 commands += Command.command("bumpMinor") { state =>
   println("Bumping minor version!")
-  val stateWithPartSet =
-    Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Minor", state)
-  val newState = Command.process("release with-defaults", stateWithPartSet)
-  newState
+  val extracted = Project extract state
+  val customState = extracted.appendWithoutSession(
+    Seq(
+      releaseProcess := relProcessForBump,
+      releaseVersionBump := sbtrelease.Version.Bump.Minor
+    ), state)
+  Command.process("release with-defaults", customState)
 }
 
 commands += Command.command("bumpMajor") { state =>
   println("Bumping major version!")
-  val stateWithPartSet =
-    Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Major", state)
-  val newState = Command.process("release with-defaults", stateWithPartSet)
-  newState
+  val extracted = Project extract state
+  val customState = extracted.appendWithoutSession(
+    Seq(
+      releaseProcess := relProcessForBump,
+      releaseVersionBump := sbtrelease.Version.Bump.Major
+    ), state)
+  Command.process("release with-defaults", customState)
 }
