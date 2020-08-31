@@ -16,7 +16,7 @@ commands += Command.command("bumpPatch") { state =>
                     commitReleaseVersion
                   )), state)
   val stateWithPartSet = 
-    Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Bugfix", extracted)
+    Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Bugfix", state)
   val newState = Command.process("release with-defaults", stateWithPartSet)
   newState
 }
