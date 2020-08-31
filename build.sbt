@@ -11,7 +11,7 @@ commands += Command.command("bumpPatch") { state =>
   println("Bumping patch version!")
   val st = Command.process(
     """
-      | set releaseProcess:= Seq[ReleaseStep](
+      | set releaseProcess := Seq[ReleaseStep](
       |    inquireVersions,
       |    setNextVersion,
       |    commitReleaseVersion
