@@ -10,13 +10,7 @@ lazy val global = project
 commands += Command.command("bumpPatch") { state =>
   println("Bumping patch version!")
   val st = Command.process(
-    """
-      | set releaseProcess := Seq[ReleaseStep](
-      |    inquireVersions,
-      |    setNextVersion,
-      |    commitReleaseVersion
-      |  )
-    """.stripMargin, state)
+    """ set releaseProcess := Seq[ReleaseStep](inquireVersions, setNextVersion, commitReleaseVersion)""", state)
   val stateWithPartSet = 
     Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Bugfix", st)
   val newState = Command.process("release with-defaults", stateWithPartSet)
