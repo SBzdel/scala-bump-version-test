@@ -10,8 +10,8 @@ lazy val global = project
 val relProcessForBump = Seq[ReleaseStep](
   inquireVersions,
   setReleaseVersion,
-  commitReleaseVersion,
   setNextVersion,
+  commitReleaseVersion,
 )
 
 commands += Command.command("bumpPatch") { state =>
