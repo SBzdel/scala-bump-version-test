@@ -10,7 +10,7 @@ lazy val global = project
 commands += Command.command("bumpPatch") { state =>
   println("Bumping patch version!")
   val extracted = Project extract state
-  val st = extracted.append(Seq(releaseProcess := Seq[ReleaseStep](
+  val st = extracted.appendWithoutSession(Seq(releaseProcess := Seq[ReleaseStep](
                     inquireVersions,
                     setNextVersion,
                     commitReleaseVersion
