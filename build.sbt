@@ -6,16 +6,15 @@ lazy val globalScalaVersion = "2.11.12"
 
 lazy val global = project
   .in(file("."))
-  .settings(
-    releaseProcess := Seq[ReleaseStep](
-      inquireVersions,
-      setNextVersion,
-      commitReleaseVersion
-    )
-  )
+  .settings()
 
 commands += Command.command("bumpPatch") { state =>
   println("Bumping patch version!")
+  releaseProcess := Seq[ReleaseStep](
+    inquireVersions,
+    setNextVersion,
+    commitReleaseVersion
+  )
   val stateWithPartSet = 
     Command.process("set releaseVersionBump := sbtrelease.Version.Bump.Bugfix", state)
   val newState = Command.process("release with-defaults", stateWithPartSet)
